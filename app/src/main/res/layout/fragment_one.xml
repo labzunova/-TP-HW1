@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragmentOne"
+    android:id="@+id/fragment1"
+    android:background="#FFE4E1" >
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/new_element" />
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="81dp"
+        android:layout_height="70dp"
+        android:layout_toRightOf="@+id/text"
+
+        android:src="@drawable/noname" />
+
+    <Button
+        android:id="@+id/Add"
+        android:textColor="#000"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/image1"
+        android:layout_toEndOf="@+id/image1"
+        android:background="#B22222"
+        android:text="click me" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="#708090"
+
+ />
+
+
+</RelativeLayout>
