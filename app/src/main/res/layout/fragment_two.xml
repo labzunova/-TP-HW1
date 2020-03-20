@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragmentTwo"
     android:id="@+id/fragment2"
-    android:background="#BBFFFF"
+    android:background="#FFE4E1"
     >
 
     <TextView

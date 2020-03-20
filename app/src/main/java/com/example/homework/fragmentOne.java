@@ -31,6 +31,12 @@ public class fragmentOne extends Fragment {
     private Activity activity;
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putIntegerArrayList("data",data);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -55,7 +61,8 @@ public class fragmentOne extends Fragment {
             recyclerView.setAdapter(adapter);
         }
 
-        for (int i = 1; i <= 100; i++) data.add(i);
+        if (savedInstanceState != null) data = savedInstanceState.getIntegerArrayList("data");
+        else for (int i = 1; i <= 100; i++) data.add(i);
 
         Button btn = view.findViewById(R.id.Add);
         btn.setOnClickListener(new View.OnClickListener() {
