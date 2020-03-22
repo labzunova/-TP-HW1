@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class fragmentTwo extends Fragment {
+public class numberOutputFragment extends Fragment {
+
+    private static String numberKey = "number";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {  // fragment layout inflating
-        return inflater.inflate(R.layout.fragment_two, container, false);
+        return inflater.inflate(R.layout.number_output_fragment, container, false);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class fragmentTwo extends Fragment {
 
         Bundle arguments = getArguments();
         if (arguments != null) {
-            text = arguments.getString("number");
+            text = arguments.getString(numberKey);
         }
 
         TextView num = view.findViewById(R.id.textF2);
@@ -41,10 +42,10 @@ public class fragmentTwo extends Fragment {
 
      }
 
-    static fragmentTwo newInstance(int num) { // state saving
-        fragmentTwo fragment = new fragmentTwo();
+    static numberOutputFragment newInstance(int num) { // state saving
+        numberOutputFragment fragment = new numberOutputFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("number",String.valueOf(num));
+        bundle.putString(numberKey,String.valueOf(num));
         fragment.setArguments(bundle);
         return fragment;
     }
