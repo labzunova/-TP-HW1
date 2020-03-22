@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragmentOne"
     android:id="@+id/fragment1"
-    android:background="#FFE4E1" >
+    android:background="@color/softPink">
 
     <TextView
         android:id="@+id/text"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/image1"
         android:layout_toEndOf="@+id/image1"
-        android:background="#B22222"
+        android:background="@color/myRed"
         android:text="click me" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,7 +44,7 @@
         android:layout_below="@+id/text"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:background="#708090"
+        android:background="@color/myGrey"
 
  />
 

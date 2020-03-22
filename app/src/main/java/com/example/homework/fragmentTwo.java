@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,9 +14,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class fragmentTwo extends Fragment {
-    TextView digit;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,15 +31,17 @@ public class fragmentTwo extends Fragment {
             text = arguments.getString("number");
         }
 
-        TextView num = (TextView)view.findViewById(R.id.textF2);
+        TextView num = view.findViewById(R.id.textF2);
         num.setText(text);
 
+        assert text != null;
         int numInt = Integer.parseInt(text);
-        if (numInt % 2 == 0) num.setTextColor(Color.parseColor("#B22222")); else num.setTextColor(Color.parseColor("#4682B4"));
+        if (numInt % 2 == 0) num.setTextColor(Color.RED);
+        else num.setTextColor(Color.BLUE);
 
      }
 
-    public static fragmentTwo newInstance(int num) {
+    static fragmentTwo newInstance(int num) { // state saving
         fragmentTwo fragment = new fragmentTwo();
         Bundle bundle = new Bundle();
         bundle.putString("number",String.valueOf(num));

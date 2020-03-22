@@ -9,8 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.homework.R;
 
 import java.util.ArrayList;
 
@@ -27,11 +24,10 @@ import java.util.ArrayList;
 public class fragmentOne extends Fragment {
 
     private ArrayList<Integer> data;
-    private MyRecyclerViewAdapter adapter;
     private Activity activity;
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) { // state saving
         super.onSaveInstanceState(outState);
         outState.putIntegerArrayList("data",data);
     }
@@ -50,26 +46,28 @@ public class fragmentOne extends Fragment {
         final RecyclerView recyclerView = view.findViewById(R.id.list);
 
         data = new ArrayList<>(); // empty array creating
-        int colCount;
+
+        // filling
+        if (savedInstanceState != null) data = savedInstanceState.getIntegerArrayList("data");
+        else for (int i = 1; i <= 100; i++) data.add(i);
+
+        int colCount; // how many grids
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             colCount = 3;
         else colCount = 4;
 
-        if (recyclerView != null) {
-            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), colCount));
-            adapter = new MyRecyclerViewAdapter(data);
+        if (recyclerView != null) { // adapter creating
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), colCount, RecyclerView.VERTICAL, false));
+            MyRecyclerViewAdapter adapter = new MyRecyclerViewAdapter(data);
             recyclerView.setAdapter(adapter);
         }
 
-        if (savedInstanceState != null) data = savedInstanceState.getIntegerArrayList("data");
-        else for (int i = 1; i <= 100; i++) data.add(i);
-
         Button btn = view.findViewById(R.id.Add);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {// new element after click
             @Override
             public void onClick(View v) {
                 data.add(data.size() + 1);
-                recyclerView.getAdapter().notifyDataSetChanged();
+                recyclerView.getAdapter().notifyItemInserted(data.size()-1);
             }
         });
     }
@@ -101,14 +99,12 @@ public class fragmentOne extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            if (position % 2 == 0) {
-                holder.number.setText(String.valueOf(position + 1));
-                holder.number.setTextColor(Color.parseColor("#B22222"));
-            } else {
-                holder.number.setText(String.valueOf(position + 1));
-                holder.number.setTextColor(Color.parseColor("#4682B4"));
-            }
-            holder.number.setOnClickListener(new View.OnClickListener() {
+            holder.number.setText(String.valueOf(position + 1));
+
+            if (position % 2 == 0) holder.number.setTextColor(Color.BLUE);
+            else holder.number.setTextColor(Color.RED);
+
+            holder.number.setOnClickListener(new View.OnClickListener() { // click on element
                 @Override
                 public void onClick(View v) {
                     TextView digit = v.findViewById(v.getId());

@@ -2,12 +2,7 @@ package com.example.homework;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements interface1{
 
