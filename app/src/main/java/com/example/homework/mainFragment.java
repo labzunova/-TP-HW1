@@ -21,22 +21,23 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class fragmentOne extends Fragment {
+public class mainFragment extends Fragment {
 
     private ArrayList<Integer> data;
     private Activity activity;
+    private String dataKey = "data";
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) { // state saving
         super.onSaveInstanceState(outState);
-        outState.putIntegerArrayList("data",data);
+        outState.putIntegerArrayList(dataKey,data);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.main_fragment, container, false);
     }
 
 
@@ -48,7 +49,7 @@ public class fragmentOne extends Fragment {
         data = new ArrayList<>(); // empty array creating
 
         // filling
-        if (savedInstanceState != null) data = savedInstanceState.getIntegerArrayList("data");
+        if (savedInstanceState != null) data = savedInstanceState.getIntegerArrayList(dataKey);
         else for (int i = 1; i <= 100; i++) data.add(i);
 
         int colCount; // how many grids
